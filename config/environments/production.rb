@@ -60,6 +60,18 @@ Rails.application.configure do
   # Set host to be used by links generated in mailer templates.
   config.action_mailer.default_url_options = { host: "example.com" }
 
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: 'smtp-fr.securemail.pro',  # Remplace par le serveur SMTP de ton hébergeur
+    port: 587,                 # Remplace par le port SMTP (587 ou 465)
+    domain: 'mzconsulting365.fr',
+    user_name: 'contact@mzconsulting365.fr',
+    password: ENV['SMTP_PASSWORD'],  # On utilisera une variable d'environnement pour le mot de passe
+    authentication: :login,
+    enable_starttls_auto: true,
+    openssl_verify_mode: 'none'
+  }
+  config.action_mailer.default_options = { from: 'contact@mzconsulting365.fr' }
   # Specify outgoing SMTP server. Remember to add smtp/* credentials via rails credentials:edit.
   # config.action_mailer.smtp_settings = {
   #   user_name: Rails.application.credentials.dig(:smtp, :user_name),
@@ -68,7 +80,6 @@ Rails.application.configure do
   #   port: 587,
   #   authentication: :plain
   # }
-
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
   config.i18n.fallbacks = true
