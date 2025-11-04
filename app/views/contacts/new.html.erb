@@ -1,0 +1,59 @@
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+          <h2 class="card-title text-center mb-0">Contactez-nous</h2>
+        </div>
+        <div class="card-body">
+          <%= form_with(model: @contact, url: contacts_path, local: true) do |form| %>
+            <% if @contact.errors.any? %>
+              <div class="alert alert-danger">
+                <h4><%= pluralize(@contact.errors.count, "erreur") %> empêchent l'envoi de ce message :</h4>
+                <ul>
+                  <% @contact.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+
+            <div class="mb-3">
+              <%= form.label :firstname, "Prénom", class: "form-label" %>
+              <%= form.text_field :firstname, class: "form-control", required: true %>
+            </div>
+
+            <div class="mb-3">
+              <%= form.label :lastname, "Nom", class: "form-label" %>
+              <%= form.text_field :lastname, class: "form-control", required: true %>
+            </div>
+
+            <div class="mb-3">
+              <%= form.label :enterprise, "Entreprise", class: "form-label" %>
+              <%= form.text_field :enterprise, class: "form-control" %>
+            </div>
+
+            <div class="mb-3">
+              <%= form.label :email, "Email", class: "form-label" %>
+              <%= form.email_field :email, class: "form-control", required: true %>
+            </div>
+
+            <div class="mb-3">
+              <%= form.label :phone, "Téléphone", class: "form-label" %>
+              <%= form.text_field :phone, class: "form-control" %>
+            </div>
+
+            <div class="mb-3">
+              <%= form.label :message, "Message", class: "form-label" %>
+              <%= form.text_area :message, class: "form-control", rows: 5, required: true %>
+            </div>
+
+            <div class="d-grid gap-2">
+              <%= form.submit "Envoyer", class: "btn btn-primary" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

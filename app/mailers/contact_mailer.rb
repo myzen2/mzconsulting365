@@ -1,8 +1,12 @@
 class ContactMailer < ApplicationMailer
-  def contact_email(name, email, message)
-    @name = name
-    @email = email
-    @message = message
-    mail(to: "mehdi.zenbil@orange.fr", subject: "Nouveau message depuis MZ Consulting 365")
+  default to: 'contact@mzconsulting365.fr'
+
+  def contact_email(contact)
+    @contact = contact
+    mail(
+      to: 'contact@mzconsulting365.fr',
+      cc: @contact.email,
+      subject: "Nouvelle demande de contact : #{@contact.firstname} #{@contact.lastname}"
+    )
   end
 end
