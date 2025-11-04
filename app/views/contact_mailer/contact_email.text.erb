@@ -1,0 +1,22 @@
+Nouvelle Demande de Contact
+
+Bonjour,
+
+Nous avons bien reçu votre demande de devis. Voici un récapitulatif de votre demande :
+
+Prénom : <%= @contact.firstname %>
+Nom : <%= @contact.lastname %>
+Entreprise : <%= @contact.enterprise %>
+Email : <%= @contact.email %>
+Téléphone : <%= @contact.phone %>
+
+Message :
+<%= @contact.message %>
+
+Nous reviendrons vers vous dans les plus brefs délais pour vous fournir un devis détaillé.
+
+Cordialement,
+L'équipe MZConsulting
+
+© <%= Time.now.year %> MZConsulting. Tous droits réservés.
+Contactez-nous : contact@mzconsulting365.fr

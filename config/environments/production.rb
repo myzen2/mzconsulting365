@@ -21,8 +21,8 @@ Rails.application.configure do
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.asset_host = "http://assets.example.com"
 
-  # Store uploaded files on the local file system (see config/storage.yml for options).
-  config.active_storage.service = :local
+  # Store uploaded files in Tigris Global Object Storage (see config/storage.yml for options).
+  config.active_storage.service = :tigris
 
   # Assume all access to the app is happening through a SSL-terminating reverse proxy.
   config.assume_ssl = true
@@ -62,16 +62,16 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: 'smtp-fr.securemail.pro',  # Remplace par le serveur SMTP de ton hébergeur
-    port: 587,                 # Remplace par le port SMTP (587 ou 465)
+    address: 'smtp.sendgrid.net',
+    port: 587,
     domain: 'mzconsulting365.fr',
-    user_name: 'contact@mzconsulting365.fr',
-    password: ENV['SMTP_PASSWORD'],  # On utilisera une variable d'environnement pour le mot de passe
-    authentication: :login,
-    enable_starttls_auto: true,
-    openssl_verify_mode: 'none'
+    user_name: 'apikey',
+    password: ENV['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'],    #['SENDGRID_API_KEY'], # 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
+    authentication: :plain,
+    enable_starttls_auto: true
   }
   config.action_mailer.default_options = { from: 'contact@mzconsulting365.fr' }
+
   # Specify outgoing SMTP server. Remember to add smtp/* credentials via rails credentials:edit.
   # config.action_mailer.smtp_settings = {
   #   user_name: Rails.application.credentials.dig(:smtp, :user_name),
@@ -98,4 +98,9 @@ Rails.application.configure do
   #
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
+  config.public_file_server.enabled = true
+  config.assets.compile = false  # Doit être false en production
+  config.assets.js_compressor = :terser
+  config.assets.css_compressor = :sass
+
 end
