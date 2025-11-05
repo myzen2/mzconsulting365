@@ -1,15 +1,20 @@
-<div class="container my-5">
+<!-- app/views/contacts/new.html.erb -->
+<div class="container py-5">
   <div class="row justify-content-center">
-    <div class="col-md-8 col-lg-6">
-      <div class="card shadow">
-        <div class="card-header bg-primary text-white">
-          <h2 class="card-title text-center mb-0">Contactez-nous</h2>
-        </div>
-        <div class="card-body">
-          <%= form_with(model: @contact, url: contacts_path, local: true) do |form| %>
+    <div class="col-lg-8">
+      <div class="card shadow-sm border-0">
+        <div class="card-body p-5">
+          <h2 class="card-title text-center mb-4" style="color: #2c3e50; font-weight: 700;">
+            Contactez-nous
+          </h2>
+          <p class="text-center mb-5" style="color: #5a6c7d;">
+            Besoin d’un accompagnement sur Microsoft 365 ? Remplissez ce formulaire, nous vous répondrons sous 24h.
+          </p>
+
+          <%= form_with(model: @contact, local: true, html: { class: "needs-validation", novalidate: true }) do |form| %>
             <% if @contact.errors.any? %>
               <div class="alert alert-danger">
-                <h4><%= pluralize(@contact.errors.count, "erreur") %> empêchent l'envoi de ce message :</h4>
+                <h4><%= pluralize(@contact.errors.count, "erreur") %> ont empêché l’envoi :</h4>
                 <ul>
                   <% @contact.errors.full_messages.each do |message| %>
                     <li><%= message %></li>
@@ -18,38 +23,82 @@
               </div>
             <% end %>
 
-            <div class="mb-3">
-              <%= form.label :firstname, "Prénom", class: "form-label" %>
-              <%= form.text_field :firstname, class: "form-control", required: true %>
-            </div>
+            <div class="row g-3">
+              <!-- Prénom et Nom -->
+              <div class="col-md-6">
+                <div class="form-floating">
+                  <%= form.text_field :firstname, class: "form-control", placeholder: "Prénom", required: true %>
+                  <%= form.label :firstname, "Prénom *" %>
+                  <div class="invalid-feedback">Veuillez entrer votre prénom.</div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-floating">
+                  <%= form.text_field :lastname, class: "form-control", placeholder: "Nom", required: true %>
+                  <%= form.label :lastname, "Nom *" %>
+                  <div class="invalid-feedback">Veuillez entrer votre nom.</div>
+                </div>
+              </div>
 
-            <div class="mb-3">
-              <%= form.label :lastname, "Nom", class: "form-label" %>
-              <%= form.text_field :lastname, class: "form-control", required: true %>
-            </div>
+              <!-- Email et Téléphone -->
+              <div class="col-md-6">
+                <div class="form-floating">
+                  <%= form.email_field :email, class: "form-control", placeholder: "Email", required: true %>
+                  <%= form.label :email, "Email *" %>
+                  <div class="invalid-feedback">Veuillez entrer une adresse email valide.</div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-floating">
+                  <%= form.text_field :phone, class: "form-control", placeholder: "Téléphone" %>
+                  <%= form.label :phone, "Téléphone" %>
+                </div>
+              </div>
 
-            <div class="mb-3">
-              <%= form.label :enterprise, "Entreprise", class: "form-label" %>
-              <%= form.text_field :enterprise, class: "form-control" %>
-            </div>
+              <!-- Entreprise et Service -->
+              <div class="col-md-6">
+                <div class="form-floating">
+                  <%= form.text_field :enterprise, class: "form-control", placeholder: "Entreprise" %>
+                  <%= form.label :enterprise, "Entreprise" %>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-floating">
+                  <%= form.select :service, options_for_select([
+                    ["Migration vers Microsoft 365", "migration"],
+                    ["Formation et adoption", "formation"],
+                    ["Sécurité et conformité", "securite"],
+                    ["Collaboration et productivité", "collaboration"],
+                    ["Support et maintenance", "support"],
+                    ["Autre", "autre"]
+                  ]), { prompt: "Sélectionnez un service" }, { class: "form-select", required: true } %>
+                  <%= form.label :service, "Service souhaité *" %>
+                  <div class="invalid-feedback">Veuillez sélectionner un service.</div>
+                </div>
+              </div>
 
-            <div class="mb-3">
-              <%= form.label :email, "Email", class: "form-label" %>
-              <%= form.email_field :email, class: "form-control", required: true %>
-            </div>
+              <!-- Message -->
+              <div class="col-12">
+                <div class="form-floating">
+                  <%= form.text_area :message, class: "form-control", placeholder: "Message", rows: 5, required: true %>
+                  <%= form.label :message, "Votre message *" %>
+                  <div class="invalid-feedback">Veuillez entrer votre message.</div>
+                </div>
+              </div>
 
-            <div class="mb-3">
-              <%= form.label :phone, "Téléphone", class: "form-label" %>
-              <%= form.text_field :phone, class: "form-control" %>
-            </div>
+              <!-- RGPD -->
+              <div class="col-12">
+                <div class="form-check">
+                  <%= form.check_box :rgpd_consent, class: "form-check-input", required: true %>
+                  <%= form.label :rgpd_consent, "J’accepte que mes données soient utilisées pour me recontacter. *", class: "form-check-label" %>
+                  <div class="invalid-feedback">Vous devez accepter pour envoyer le formulaire.</div>
+                </div>
+              </div>
 
-            <div class="mb-3">
-              <%= form.label :message, "Message", class: "form-label" %>
-              <%= form.text_area :message, class: "form-control", rows: 5, required: true %>
-            </div>
-
-            <div class="d-grid gap-2">
-              <%= form.submit "Envoyer", class: "btn btn-primary" %>
+              <!-- Bouton d'envoi -->
+              <div class="col-12 text-center">
+                <%= form.submit "Envoyer", class: "btn btn-primary px-4 py-2", style: "background-color: #3498db; border: none; font-weight: 600;" %>
+              </div>
             </div>
           <% end %>
         </div>

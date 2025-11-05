@@ -22,7 +22,11 @@ Rails.application.routes.draw do
 
 
   get 'contact', to: 'contacts#new', as: 'contact'
-  get 'thank-you', to: 'contacts#thank_you', as: 'thank_you'
+  get 'Merci !', to: 'contacts#thank_you', as: 'thank_you'
+
+  get 'services', to: 'pages#services', as: 'services'
+
+  get 'index', to: 'pages#index'
 
   # ... autres routes ...
 end

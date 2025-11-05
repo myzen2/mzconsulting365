@@ -79,6 +79,11 @@ gem 'better_errors', '~> 2.10', '>= 2.10.1'
 # Gemfile
 gem 'letter_opener_web', group: :development
 
-gem 'sassc-rails'
-gem 'terser'
-gem 'jsbundling-rails'
+# Gemfile
+gem 'sassc'  # Optionnel, si tu veux une compatibilité Ruby pour Sass
+
+gem 'font-awesome-sass'
+
+#gem 'sassc-rails'
+#gem 'terser'
+#gem 'jsbundling-rails'

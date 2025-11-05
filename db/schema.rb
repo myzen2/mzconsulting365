@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_11_03_123115) do
+ActiveRecord::Schema[8.0].define(version: 2025_11_05_080949) do
   create_table "contacts", force: :cascade do |t|
     t.string "firstname"
     t.string "lastname"
@@ -20,6 +20,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_03_123115) do
     t.text "message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "service"
+    t.boolean "rgpd_consent", default: false
   end
 
   create_table "demandes", force: :cascade do |t|
