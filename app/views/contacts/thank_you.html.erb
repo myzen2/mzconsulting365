@@ -1,16 +1,66 @@
-<div class="container my-5 text-center">
+
+<!-- app/views/contacts/thank_you.html.erb -->
+<div class="container py-5">
   <div class="row justify-content-center">
-    <div class="col-md-8">
-      <div class="card shadow">
-        <div class="card-header bg-success text-white">
-          <h2 class="card-title mb-0">Merci !</h2>
+    <div class="col-md-6">
+      <div class="card border-0 shadow-sm text-center p-5" style="background: white; border-radius: 10px;">
+        <div class="mb-4" style="font-size: 3.5rem; color: #28a745;">
+          <i class="bi bi-check2-circle"></i>
         </div>
-        <div class="card-body">
-          <h3 class="text-success">Votre message a bien été envoyé.</h3>
-          <p>Nous vous contacterons dans les plus brefs délais.</p>
-          <%= link_to "Retour à l'accueil", root_path, class: "btn btn-primary" %>
+        <h2 class="mb-3" style="color: #2c3e50; font-weight: 600;">Merci pour votre message !</h2>
+        <p class="mb-4" style="color: #6c757d; font-size: 1.1rem;">
+          Nous avons bien reçu votre demande et vous répondrons sous 24 heures.
+        </p>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+          <%= link_to "Retour à l’accueil", root_path, class: "btn btn-primary px-4 py-2", style: "background-color: #3498db; border: none;" %>
         </div>
       </div>
     </div>
   </div>
 </div>
+<h1>Solution 2</h1>
+
+
+<!-- app/views/contacts/thank_you.html.erb -->
+<div class="py-5" style="background-color: #f8f9fa;">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card border-0 shadow-sm p-5 text-center" style="background: white; border-radius: 10px; border-top: 4px solid #3498db;">
+          <div class="mb-4" style="font-size: 3.5rem; color: #3498db;">
+            <i class="bi bi-envelope-check"></i>
+          </div>
+          <h2 class="mb-3" style="color: #2c3e50; font-weight: 600;">Message envoyé avec succès</h2>
+          <p class="mb-4" style="color: #6c757d; font-size: 1.1rem;">
+            Merci de nous avoir contactés. Nous vous répondrons dans les plus brefs délais.
+          </p>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+            <%= link_to "Retour à l’accueil", root_path, class: "btn btn-outline-primary px-4 py-2", style: "color: #3498db; border-color: #3498db;" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<h1 style="background-color: #f8f9fa;">Solution 3</h1>
+
+<!-- app/views/contacts/thank_you.html.erb -->
+<div class="container">
+  <div class="row justify-content-center py-5">
+    <div class="col-md-8 col-lg-6">
+      <div class="text-center p-4">
+        <div class="mb-4" style="font-size: 4rem; color: #28a745;">
+          ✉️
+        </div>
+        <h1 class="mb-3" style="color: #2c3e50; font-weight: 700;">Merci !</h1>
+        <p class="mb-4" style="color: #5a6c7d; font-size: 1.2rem;">
+          Votre message a bien été envoyé. Nous vous contacterons sous 24 heures.
+        </p>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+          <%= link_to "Retour à l’accueil", root_path, class: "btn btn-primary px-4 py-2 me-md-2", style: "background-color: #3498db; border: none;" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<h1>Solution 4</h1>
