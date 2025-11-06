@@ -61,16 +61,22 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: "example.com" }
 
   config.action_mailer.delivery_method = :smtp
+
   config.action_mailer.smtp_settings = {
-    address: 'smtp.sendgrid.net',
-    port: 587,
+    address: 'smtp-fr.securemail.pro',
+    port: 465,
     domain: 'mzconsulting365.fr',
-    user_name: 'apikey',
-    password: ENV['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'],    #['SENDGRID_API_KEY'], # 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
+    user_name: ENV['SMTP_USERNAME'],
+    password: ENV['SMTP_PASSWORD'],
     authentication: :plain,
-    enable_starttls_auto: true
+    ssl: true,
+    open_timeout: 10,            # Augmente le délai d'ouverture de la connexion (en secondes)
+    read_timeout: 10             # Augmente le délai de lecture
   }
-  config.action_mailer.default_options = { from: 'contact@mzconsulting365.fr' }
+  config.action_mailer.default_options = { from: ENV['SMTP_USERNAME'] }
+
+  config.secret_key_base = ENV['SECRET_KEY_BASE']
+
 
   # Specify outgoing SMTP server. Remember to add smtp/* credentials via rails credentials:edit.
   # config.action_mailer.smtp_settings = {
