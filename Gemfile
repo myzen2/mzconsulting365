@@ -76,7 +76,7 @@ gem "mail", "~> 2.7"
 
 gem "dockerfile-rails", ">= 1.7", group: :development
 
-gem "aws-sdk-s3", "~> 1.202", require: false
+gem "aws-sdk-s3", "~> 1.204", require: false
 gem 'better_errors', '~> 2.10', '>= 2.10.1'
 # Gemfile
 gem 'letter_opener_web', group: :development
